@@ -4,12 +4,13 @@
 #include <string>
 #include <fstream>
 #include "UserCredentials.txt"
+#include "Libcom.h" 
 
 
 
-
-bool ExitRequest;
-std::string Version = "V0.0.7 Pre-Alpha beta-1";
+bool ExitNotice = false;
+bool ExitRequest = false;
+std::string Version = "V0.0.7 RC";
 std::string User;
 std::string Password;
 int welcome() {
@@ -69,30 +70,6 @@ int Bootup() {
 	std::cout << "Booting...." << std::endl;
 	
 	std::cout << "Booting....."<< std::endl;
-
-	return(0);
-
-
-}
-
-
-
-int CommandLibary(std::string Program) {
-
-
-	
-
-
-
-
-
-
-
-
-	
-
-
-
 
 	return(0);
 
