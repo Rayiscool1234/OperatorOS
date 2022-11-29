@@ -6,20 +6,38 @@
 #include "UserCredentials.txt"
 #include "Libcom.h" 
 
-
-
+bool Debug = true;
+bool Skip = false;
 bool ExitNotice = false;
 bool ExitRequest = false;
 std::string Version = "V0.0.7 RC";
 std::string User;
 std::string Password;
+
+
 int welcome() {
 
 	std::cout << "Welcome to OperatorOS " << Version << std::endl;
 	std::cout << "it seems like you are new, we will sign you up\nplease wait" << std::endl;
-	
+	std::string output;
+	bool wantSkip;
+	std::cout << "Skip?" << std::endl;
+	std::cin >> output;
+	if (output == "y") {
+		wantSkip = true;
 
+	}
+	else {
 
+		wantSkip = false;
+
+	}
+	if (Debug && wantSkip) {
+
+		Skip = true;
+		User = "Tester";
+		Password = "a";
+	}
 
 	return(0);
 
@@ -87,7 +105,11 @@ int Commandline() {
 			std::cin >> Command;
 
 
+			if (Command == "exit") {
 
+				ExitNotice = true;
+
+			}
 
 
 
@@ -96,11 +118,11 @@ int Commandline() {
 		} while (Command.empty() == 1);
 	
 		CommandLibary(Command);
-	
-	} while (Command == "exit");
-
+		Command = "";
+	} while (ExitNotice == false);
 
 	ExitRequest = true;
+	
 	return(0);
 
 }
@@ -135,9 +157,11 @@ int Usersave() {
 
 	std::cout << "Saving Credentials" << std::endl;
 	std::cout << "saved Credentials" << std::endl;
-
-
-
+	PasswordA = Password;
+	UserA = User;
+	
+	Userspec User`(User, Password, true);
+		
 
 
 	std::ofstream UserCredentials("UserCredentials.txt");
@@ -161,25 +185,30 @@ int Usersave() {
 
 int Usersignup() {
 	bool YesorNo = false;
-	do {
-		std::cout << "Please Enter you Username" << std::endl;
-		std::cout << "Username: ";
-		std::cin >> User;
-		std::cout << std::endl << "Please Enter a easy to remember and secure password as you can't change later" << std::endl;
-		std::cout << std::endl << "Password: ";
-		std::cin >> Password;
-		std::cout << std::endl;
+	if (Skip) {
+
+
+	}
+	else {
+		do {
+			std::cout << "Please Enter you Username" << std::endl;
+			std::cout << "Username: ";
+			std::getline(std::cin, User);
+			std::cout << std::endl << "Please Enter a easy to remember and secure password as you can't change later" << std::endl;
+			std::cout << std::endl << "Password: ";
+			std::cin >> Password;
+			std::cout << std::endl;
+
+			YesorNo = promptYesorNo(User);
+
+
+		} while (YesorNo != true);
+
+
+
 		
-		YesorNo = promptYesorNo(User);
-
-
-	} while (YesorNo != true);
-	
-	
-	
+	}
 	Usersave();
-
-
 
 	return(0);
 
@@ -213,7 +242,7 @@ int main() {
 
 	Desktop();
 
-
+	
 }
 
 

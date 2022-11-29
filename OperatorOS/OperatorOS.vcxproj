@@ -144,6 +144,10 @@
   <ItemGroup>
     <Text Include="UserCredentials.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ImportantMessages.h" />
+    <ClInclude Include="Libcom.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
