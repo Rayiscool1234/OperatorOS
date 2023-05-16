@@ -3,8 +3,9 @@
 #include <iomanip>
 #include <string>
 #include <fstream>
-#include "ImportantMessages.h"
+// #include "ImportantMessages.h"
 #include <stdlib.h>
+#include "ImportantMessages.h"
 bool Scheduledshutdown = false;
 int Counter = 0;
 bool High_Permission = false;
@@ -14,6 +15,19 @@ std::string UserA;
 std::string Runablecommand = "Non HR perms:\ncalculator-permissions\nHR perms:\ngivepermissions-logininfo-update";
 std::string VersionA = "V0.0.7 RC";
 std::string Credit = "OperatorOS\nDesigned by Rayan\nCreated by Rayan\nConcept by Rayan\nThank you for using this Applications";
+void Find(std::string text, std::string word) {
+
+	for (int i = 0; i > text.length(); i++) {
+
+		std::string Letters = text;
+		
+
+	}
+
+
+
+}
+
 
 class Userspec {
 
@@ -127,7 +141,12 @@ int hp() {
 
 	return(0);
 }
+void runAd(std::string Program) {
 
+
+
+
+}
 int run() {
 	std::cout << "What do you want to run?" << std::endl;
 	std::string CommandsA;
@@ -245,7 +264,10 @@ void errortest() {
 	std::string Output;
 	std::cout << "What type of error" << std::endl;
 	std::cin >> Output;
-	ErrorHandler(Output);
+	if (Output == "symbol") {
+		ErrorHandler(UNKNOWN_SYMBOL);
+	}
+	
 
 }
 
@@ -258,14 +280,14 @@ int CommandLibary(std::string Program) {
 		Counter = Counter - 1;
 		RanCommand = false;
 	}
-
+	
 	// If you want to you can add a program here or in run function but be careful to not break other commands
 	// if (Program == "") {}
 
 	if (Program == "testerror") {
 		errortest();
 	}
-
+	
 	if (Program == "test") {
 
 		test();

@@ -102,7 +102,7 @@ int Commandline() {
 
 
 			std::cout << User << ">> ";
-			std::cin >> Command;
+			std::getline(std::cin, Command);
 
 
 			if (Command == "exit") {
@@ -160,7 +160,7 @@ int Usersave() {
 	PasswordA = Password;
 	UserA = User;
 	
-	Userspec User`(User, Password, true);
+	
 		
 
 

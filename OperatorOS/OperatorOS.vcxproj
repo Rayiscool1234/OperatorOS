@@ -142,7 +142,9 @@
     <ClCompile Include="OperatorOS.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="UserCredentials.txt" />
+    <Text Include="UserCredentials.txt">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</DeploymentContent>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ImportantMessages.h" />
