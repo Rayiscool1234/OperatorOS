@@ -3,7 +3,6 @@
 #include <iomanip>
 #include <string>
 #include <fstream>
-#include "UserCredentials.txt"
 #include "Libcom.h" 
 
 bool Debug = true;
@@ -69,7 +68,7 @@ bool promptYesorNo(std::string text) {
 
 }
 
-int Bootup() {
+void Bootup() {
 
 
 	std::cout << "Installing files" << std::endl;
@@ -88,13 +87,9 @@ int Bootup() {
 	std::cout << "Booting...." << std::endl;
 	
 	std::cout << "Booting....."<< std::endl;
-
-	return(0);
-
-
 }
 
-int Commandline() {
+void Commandline() {
 	std::string Command;
 	do {
 		do {
@@ -122,12 +117,9 @@ int Commandline() {
 	} while (ExitNotice == false);
 
 	ExitRequest = true;
-	
-	return(0);
-
 }
 
-int Desktop() {
+void Desktop() {
 
 	
 	std::cout << "Welcome, " << User << ". We thank you for using our OS." << std::endl;
@@ -146,8 +138,6 @@ int Desktop() {
 
 
 	exit(EXIT_SUCCESS);
-
-	return(0);
 }
 
 
@@ -193,7 +183,7 @@ int Usersignup() {
 		do {
 			std::cout << "Please Enter you Username" << std::endl;
 			std::cout << "Username: ";
-			std::getline(std::cin, User);
+			std::cin >> User;
 			std::cout << std::endl << "Please Enter a easy to remember and secure password as you can't change later" << std::endl;
 			std::cout << std::endl << "Password: ";
 			std::cin >> Password;

@@ -3,8 +3,8 @@
 #include <iomanip>
 #include <string>
 #include <fstream>
-// #include "ImportantMessages.h"
 #include <stdlib.h>
+#include <algorithm>
 #include "ImportantMessages.h"
 bool Scheduledshutdown = false;
 int Counter = 0;
@@ -15,34 +15,61 @@ std::string UserA;
 std::string Runablecommand = "Non HR perms:\ncalculator-permissions\nHR perms:\ngivepermissions-logininfo-update";
 std::string VersionA = "V0.0.7 RC";
 std::string Credit = "OperatorOS\nDesigned by Rayan\nCreated by Rayan\nConcept by Rayan\nThank you for using this Applications";
-void Find(std::string text, std::string word) {
+bool Find(const std::string& input, const std::string& searchTerm) {
+	// Perform case-insensitive search
+	std::string lowercaseInput = input;
+	std::string lowercaseSearchTerm = searchTerm;
+	std::transform(lowercaseInput.begin(), lowercaseInput.end(), lowercaseInput.begin(), ::tolower);
+	std::transform(lowercaseSearchTerm.begin(), lowercaseSearchTerm.end(), lowercaseSearchTerm.begin(), ::tolower);
 
-	for (int i = 0; i > text.length(); i++) {
-
-		std::string Letters = text;
-		
-
+	// Use std::string find() function to search for the term
+	if (lowercaseInput.find(lowercaseSearchTerm) != std::string::npos) {
+		return true;  // Found the term
 	}
 
-
-
+	// Search not found
+	return false;
 }
 
 
 class Userspec {
-
-public:
+private:
 	std::string name;
 	std::string pass;
-	bool Admin;
-	int User(std::string Aname, std::string Apass, bool Aadmin) {
-		name = Aname;
-		pass = Apass;
-		Admin = Aadmin;
-		return(0);
+	bool isAdmin;
+
+public:
+	Userspec(const std::string& Aname, const std::string& Apass, bool Aadmin) :
+		name(Aname), pass(Apass), isAdmin(Aadmin) {
 	}
 
+	// Getter methods
+	std::string getName() const {
+		return name;
+	}
+
+	std::string getPass() const {
+		return pass;
+	}
+
+	bool isAdminUser() const {
+		return isAdmin;
+	}
+
+	// Setter methods, if needed
+	void setName(const std::string& newName) {
+		name = newName;
+	}
+
+	void setPass(const std::string& newPass) {
+		pass = newPass;
+	}
+
+	void setAdmin(bool newAdmin) {
+		isAdmin = newAdmin;
+	}
 };
+
 
 
 std::string Com = "chelp-help-run-hp-credits-about-test";
@@ -218,20 +245,34 @@ int run() {
 		std::cout << "works" << std::endl;
 		Sentcommand = true;
 	}
-	if (CommandsA == "givepermissions" and High_Permission == true) {
-		
-		std::cout << "works" << std::endl;
-		Sentcommand = true;
+	if (CommandsA == "givepermissions") {
+		if (!High_Permission) {
+			ErrorHandler(LACK_OF_AUTHORITY);
+		}
+		else {
+			std::cout << "works" << std::endl;
+			Sentcommand = true;
+		}
 	}
-	if (CommandsA == "logininfo" and High_Permission == true) {
+	if (CommandsA == "logininfo") {
 		
-		std::cout << "works" << std::endl;
-		Sentcommand = true;
+		if (!High_Permission) {
+			ErrorHandler(LACK_OF_AUTHORITY);
+		}
+		else {
+			std::cout << "works" << std::endl;
+			Sentcommand = true;
+		}
 	}
-	if (CommandsA == "update" and High_Permission == true) {
+	if (CommandsA == "update") {
 		
-		std::cout << "works" << std::endl;
-		Sentcommand = true;
+		if (!High_Permission) {
+			ErrorHandler(LACK_OF_AUTHORITY);
+		}
+		else {
+			std::cout << "works" << std::endl;
+			Sentcommand = true;
+		}
 	}
 	if (Sentcommand == false) {
 
@@ -264,10 +305,17 @@ void errortest() {
 	std::string Output;
 	std::cout << "What type of error" << std::endl;
 	std::cin >> Output;
-	if (Output == "symbol") {
-		ErrorHandler(UNKNOWN_SYMBOL);
-	}
-	
+	if (Output == "symbol") { ErrorHandler(UNKNOWN_SYMBOL); }
+	else if (Output == "dll") { ErrorHandler(IMPORTANT_DLL_CORRUPTED); }
+	else if (Output == "authority") { ErrorHandler(LACK_OF_AUTHORITY); }
+	else if (Output == "filetype") { ErrorHandler(INVALID_FILE_FORMAT); }
+	else if (Output == "resource") { ErrorHandler(SYSTEM_RESOURCES_EXHAUSTED); }
+	else if (Output == "device_r") { ErrorHandler(DEVICE_NOT_FOUND); }
+	else if (Output == "device_c") { ErrorHandler(CRITICAL_DEVICE_NOT_FOUND); }
+	else if (Output == "io") { ErrorHandler(IO_ERROR); }
+	else if (Output == "interrupt") { ErrorHandler(SYSTEM_INTERRUPT); }
+	else if (Output == "kernel") { ErrorHandler(KERNEL_ERROR); }
+	else { ErrorHandler(); }
 
 }
 
