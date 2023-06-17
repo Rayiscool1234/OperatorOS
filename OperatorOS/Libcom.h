@@ -76,7 +76,7 @@ std::string Com = "chelp-help-run-hp-credits-about-test";
 bool promptYesorNoA(std::string text) {
 	bool YesorNo = false;
 	std::string value;
-	
+
 	do {
 
 		std::cout << text << std::endl;
@@ -84,21 +84,21 @@ bool promptYesorNoA(std::string text) {
 		std::cin >> value;
 
 
-		
+
 
 
 		if (value == "y") {
-		
-			YesorNo = true; 
-		
+
+			YesorNo = true;
+
 		}
 
 		if (value == "n") {
-			
-			
-			YesorNo = false; 
-		
-		
+
+
+			YesorNo = false;
+
+
 		}
 
 	} while (value != "y" && value != "n");
@@ -120,7 +120,7 @@ int about() {
 }
 void syscom() {
 
-	
+
 
 }
 
@@ -131,9 +131,9 @@ int credits() {
 }
 
 int hp() {
-	
+
 	bool HP_finished = false;
-	
+
 	if (Counter < 3) {
 		if (High_Permission == false) {
 			std::string Submittedpassword;
@@ -193,7 +193,7 @@ int run() {
 		int value1 = NULL;
 		int value2 = NULL;
 		int results = NULL;
-		
+
 		std::cout << "Options: * - / +\nOperation?\n";
 		std::cin >> Operation;
 
@@ -228,7 +228,7 @@ int run() {
 			results = value1 + value2;
 
 		}
-		
+
 		if (Dividedby0 == true) {
 			std::cout << std::endl << Dividedby0string << std::endl;
 			std::cout << "OH NO WHY YOU DIVIDED BY ZERO I AM GOING TO EXPLODEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE" << std::endl;
@@ -241,7 +241,7 @@ int run() {
 		Sentcommand = true;
 	}
 	if (CommandsA == "permissions") {
-		
+
 		std::cout << "works" << std::endl;
 		Sentcommand = true;
 	}
@@ -255,7 +255,7 @@ int run() {
 		}
 	}
 	if (CommandsA == "logininfo") {
-		
+
 		if (!High_Permission) {
 			ErrorHandler(LACK_OF_AUTHORITY);
 		}
@@ -265,7 +265,7 @@ int run() {
 		}
 	}
 	if (CommandsA == "update") {
-		
+
 		if (!High_Permission) {
 			ErrorHandler(LACK_OF_AUTHORITY);
 		}
@@ -273,11 +273,6 @@ int run() {
 			std::cout << "works" << std::endl;
 			Sentcommand = true;
 		}
-	}
-	if (Sentcommand == false) {
-
-		std::cout << "ERROR: Either you did not type anything, sent a invalid Command or user doesn't have permissions to run it\nplease make sure that the command is available and HP permissions are true before sending the same command" << std::endl;
-
 	}
 
 	RanCommand = Sentcommand;
@@ -296,7 +291,7 @@ int help() {
 int chelp() {
 
 	std::cout << "These are the commands (these dashes are spaces)\n" << Com << std::endl;
-	
+
 
 	return(0);
 }
@@ -320,7 +315,7 @@ void errortest() {
 }
 
 int CommandLibary(std::string Program) {
-	
+
 	bool Basicprogram_ran = false;
 
 	if (RanCommand == true and Counter > 1) {
@@ -328,14 +323,14 @@ int CommandLibary(std::string Program) {
 		Counter = Counter - 1;
 		RanCommand = false;
 	}
-	
+
 	// If you want to you can add a program here or in run function but be careful to not break other commands
 	// if (Program == "") {}
 
 	if (Program == "testerror") {
 		errortest();
 	}
-	
+
 	if (Program == "test") {
 
 		test();
@@ -344,13 +339,13 @@ int CommandLibary(std::string Program) {
 	}
 
 	if (Program == "about") {
-	
+
 		about();
 		return(0);
 		Basicprogram_ran = true;
 	}
 	if (Program == "hp") {
-	
+
 		hp();
 		return(0);
 		Basicprogram_ran = true;
@@ -382,7 +377,7 @@ int CommandLibary(std::string Program) {
 
 	}
 	if (Program == "shutdown") {
-		
+
 		bool NoworLater;
 		if (!Scheduledshutdown) {
 			std::cout << "Do you want to shutdown now or after 30 seconds you can always stop the shutdown" << std::endl;
@@ -439,8 +434,8 @@ int CommandLibary(std::string Program) {
 
 	}
 	Program = "";
-	
+
 	return(0);
-	
+
 
 }
